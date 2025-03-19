@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import Produk from "./pages/Produk";
 import Artikel from "./pages/Artikel";
+import Karyawan from "./pages/Karyawan";
 
 console.log("Aplikasi sedang dijalankan...");
 
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/produk" element={<Produk />} />
           <Route path="/artikel" element={<Artikel />} />
+          <Route path="/karyawan" element={<Karyawan />} />
         </Routes>
       </div>
     </Router>

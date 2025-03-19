@@ -17,3 +17,6 @@ chmod +x /Applications/XAMPP/xamppfiles/htdocs/PS/ps-js-kela/kelaa-2tif/node_mod
 
 npm install react-router-dom
 npm install bootstrap
+npm run dev
+
+npm install tailwindcss @tailwindcss/vite

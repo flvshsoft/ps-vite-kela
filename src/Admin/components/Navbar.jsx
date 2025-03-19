@@ -1,44 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const Navbar = () => {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-dark">
-      <div className="container">
-        <NavLink className="navbar-brand text-black" to="/">
-          Admin Panel
-        </NavLink>
-        <button
-          className="navbar-toggler text-black"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+  const [isOpen, setIsOpen] = useState(false);
 
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <NavLink className="nav-link text-black" to="/dashboard">
-                Dashboard
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link text-black" to="/produk">
-                Manajemen Produk
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link text-black" to="/artikel">
-                Manajemen Artikel
-              </NavLink>
-            </li>
-          </ul>
+  return (
+    <nav className="bg-white shadow-md">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <NavLink className="text-xl font-bold text-gray-800" to="/">
+            Admin Panel
+          </NavLink>
+
+          {/* Button Mobile */}
+          <button
+            className="md:hidden text-gray-800 focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? "✖" : "☰"}
+          </button>
+
+          {/* Menu */}
+          <div
+            className={`${
+              isOpen ? "block" : "hidden"
+            } md:flex md:items-center md:space-x-6`}
+          >
+            <NavLink className="block py-2 px-4 text-gray-700 hover:text-blue-500" to="/dashboard">
+              Dashboard
+            </NavLink>
+            <NavLink className="block py-2 px-4 text-gray-700 hover:text-blue-500" to="/produk">
+              Manajemen Produk
+            </NavLink>
+            <NavLink className="block py-2 px-4 text-gray-700 hover:text-blue-500" to="/artikel">
+              Manajemen Artikel
+            </NavLink>
+            <NavLink className="block py-2 px-4 text-gray-700 hover:text-blue-500" to="/karyawan">
+              Manajemen Karyawan
+            </NavLink>
+          </div>
         </div>
       </div>
     </nav>

@@ -1,15 +1,15 @@
-export default function Artikel(){
+export default function ArtikelDetail(){
     return (
         <div>
             <h1>Berita hari ini</h1>
-            <img src="public/img/ethel.jpg" alt="logo" style={{ display: 'block', margin: '0 auto' }} />
-            <Berita/>
+           <center> <img src="public/img/ethel.jpg" alt="logo"/> </center>
+            <Artikel/>
             <Isi/>
             <Biodata
             nama="ethel the cat" 
             kelamin="betina"
             tanggal={new Date().toLocaleDateString()}
-            hobi="main"/>
+            Hobi="main"/>
             <Kepribadian/>
          
           
@@ -17,7 +17,7 @@ export default function Artikel(){
     )
 }
 
-function Berita() {
+function Artikel() {
     const text = "etthel the cat";
     const text2 = "uiiaiuiiai";
     return (

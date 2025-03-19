@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 const Artikel = () => {
   const [products, setProducts] = useState([
-    { id: 1, judul: "Jual Laptop", penulis: "Kela" },
-    { id: 2, judul: "Jual Mouse", penulis: "Yura" },
-    { id: 3, judul: "Beli Keyboard", penulis: "Kela" },
+    { id: 1, judul: "chicken chessee", detail: "Crispy chicken fillet yang juicy, dilapisi dengan keju leleh yang gurih dan creamy. Disajikan dengan saus spesial dan kentang goreng." },
+    { id: 2, judul: "chicken pom", detail: "Potongan ayam kecil berbentuk bola-bola yang renyah di luar, lembut di dalam. Cocok dicocol dengan saus BBQ atau mayo pedas." },
+    { id: 3, judul: "hicken tariyaki", detail: "Ayam panggang dengan saus teriyaki khas Jepang, manis gurih dengan sentuhan wijen. Dilengkapi dengan nasi hangat dan sayuran segar." },
   ]);
 
-  const [formData, setFormData] = useState({ id: "", judul: "", penulis: "" });
+  const [formData, setFormData] = useState({ id: "", judul: "", detail: "" });
 
   // Handle Input
   const handleChange = (e) => {
@@ -29,7 +29,7 @@ const Artikel = () => {
         { ...formData, id: products.length ? products[products.length - 1].id + 1 : 1 },
       ]);
     }
-    setFormData({ id: "", judul: "", penulis: "" });
+    setFormData({ id: "", judul: "", detail: "" });
   };
 
   // Edit Artikel
@@ -60,12 +60,12 @@ const Artikel = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Penulis</label>
+          <label className="form-label">detail</label>
           <input
             type="text"
             className="form-control"
-            name="penulis"
-            value={formData.penulis}
+            name="detail"
+            value={formData.detail}
             onChange={handleChange}
             required
           />
@@ -81,7 +81,7 @@ const Artikel = () => {
           <tr>
             <th>ID</th>
             <th>Judul Artikel</th>
-            <th>Penulis</th>
+            <th>detail</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -90,7 +90,7 @@ const Artikel = () => {
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.judul}</td>
-              <td>{product.penulis}</td>
+              <td>{product.detail}</td>
               <td>
                 <button className="btn btn-warning me-2" onClick={() => handleEdit(product)}>
                   Edit

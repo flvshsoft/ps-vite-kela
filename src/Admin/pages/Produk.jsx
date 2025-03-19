@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 const Produk = () => {
   const [products, setProducts] = useState([
-    { id: 1, name: "Laptop", price: 10000000 },
-    { id: 2, name: "Mouse", price: 150000 },
-    { id: 3, name: "Keyboard", price: 300000 },
+    { id: 1, name: "Chicken chesee", price: 78000},
+    { id: 2, name: "chicken pom", price: 45000 },
+    { id: 3, name: "chicken tariyaki ", price: 30000 },
   ]);
 
   const [formData, setFormData] = useState({ id: "", name: "", price: "" });
