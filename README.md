@@ -20,3 +20,10 @@ npm install bootstrap
 npm run dev
 
 npm install tailwindcss @tailwindcss/vite
+npm install react-icons
+
+install chart npm install apexcharts react-apexcharts / yarn add apexcharts react-apexcharts
+
+import chart : import Chart from "react-apexcharts";
+
+
