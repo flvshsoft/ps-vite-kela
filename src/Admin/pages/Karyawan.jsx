@@ -1,118 +1,96 @@
-import React, { useState } from "react";
-import InputField from "../components/InputField";
-import ErorMessage from "../components/ErorMessage";
+// import jobData from "../data/job_listing.json";
 
-const Karyawan = () => {
-  const [nama, setNama] = useState("");
-  const [jabatan, setJabatan] = useState("");
-  const [foto, setFoto] = useState("");
-  const [namaError, setNamaError] = useState(false);
-  const [jabatanError, setJabatanError] = useState(false);
-  const [fotoError, setFotoError] = useState(false);
+// const JobApplication = () => {
+//     return (
+//         <div className="p-8">
+//             {jobData.map((item) => (
+// 		            <div key={item.id} className="border p-4 mb-4 rounded-lg shadow-md bg-white">
+// 		                <h2 className="text-lg font-bold text-gray-800">{item.title}</h2>
+// 		                <p className="text-gray-600">{item.company}</p>
+// 		                <p className="text-gray-600">{item.image}</p>
+// 		                <p className="text-gray-600">{item.salary.min}</p>
+// 		            </div>
+//             ))}
+//         </div>
+//     )
+// }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (nama.trim() === "" || /^\d+$/.test(nama.trim())) {
-      setNamaError(true);
-      return; // Hentikan submit jika nama kosong
-    }
-    setNamaError(false);
+// export default JobApplication;
 
-    if (jabatan.trim() === "" || /^\d+$/.test(jabatan.trim())) {
-      setJabatanError(true);
-      return; // Hentikan submit jika nama kosong
-    }
-    setJabatanError(false);
 
-    if (foto.trim() === "" || /^\d+$/.test(foto.trim())) {
-      setFotoError(true);
-      return; // Hentikan submit jika nama kosong
-    }
+import jobData from "../data/job_listing.json";
 
-    setFotoError(false);
-    console.log("Form submitted:", { nama });
-  }
-  return (
-    <div className="container mt-4">
-      <h2>Manajemen Karyawan</h2>
+const JobApplication = () => {
+    return (
+      <div className="p-8">
+        <div className="overflow-x-auto">
+          <table className="min-w-full table-auto border-collapse border border-gray-300 bg-white text-sm text-left">
+            <thead className="bg-gray-100 text-gray-700 text-left">
+              <tr>
+                <th className="px-4 py-2 border border-gray-300">Image</th>
+                <th className="px-4 py-2 border border-gray-300">Title</th>
+                <th className="px-4 py-2 border border-gray-300">Company</th>
+                <th className="px-4 py-2 border border-gray-300">Location</th>
+                <th className="px-4 py-2 border border-gray-300">
+                  Salary (Min - Max)
+                </th>
+                <th className="px-4 py-2 border border-gray-300">Education</th>
+                {/* <th className="px-4 py-2 border border-gray-300">Experience</th> */}
+                <th className="px-4 py-2 border border-gray-300">Skills</th>
+                {/* <th className="px-4 py-2 border border-gray-300">Benefits</th> */}
+                <th className="px-4 py-2 border border-gray-300">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {jobData.map((item) => (
+                <tr key={item.id} className="hover:bg-gray-50 align-top">
+                  <td className="px-4 py-2 border border-gray-300 min-w-[150px]">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-[150px] h-[150px] object-cover rounded shadow"
+                    />
+                  </td>
 
-      {/* Form Karyawan */}
-      <form onSubmit={handleSubmit} className="mb-4">
-         <InputField
-            label="Nama"
-            type="text"
-            placeholder="masukan nama anda"
-            value={nama}
-            onChange={(e) => setNama(e.target.value)}
-          />
-          {namaError && (
-          <ErorMessage message="Nama tidak boleh kosong atau tidak boleh number"/>
-          )}
-          
-          <div className="mb-3">
-            <label className="block text-gray-700 font-medium mb-1">Jabatan</label>
-           <select
-            value={jabatan}
-            onChange={(e) => setJabatan(e.target.value)}
-            className="border p-2 w-full"
-          >
-            <option value="">Pilih Jabatan</option>
-            <option value="manager">Manager</option>
-            <option value="supervisor">Supervisor</option>
-            <option value="staff">Staff</option>
-            <option value="intern">Intern</option>
-          </select>
-          {jabatanError && (
-          <ErorMessage message="Jabatan tidak boleh kosong atau tidak boleh number"/>
-          )}
-          </div>
-
-           <InputField
-            label="Foto"
-            type="text"
-            placeholder="masukan foto anda"
-            value={foto}
-            onChange={(e) => setFoto(e.target.value)}
-          />
-          {fotoError && (
-          <ErorMessage message="Foto tidak boleh kosong atau tidak boleh number"/>
-          )}
-       
-        <button type="submit" className="btn btn-primary">
-          Tambah
-        </button>
-      </form>
-
-      {/* Tabel Karyawan */}
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nama Karyawan</th>
-            <th>Jabatan</th>
-            <th>Foto</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr key="1">
-              <td>1</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>
-                <button className="btn btn-warning me-2">
-                  Edit
-                </button>
-                <button className="btn btn-danger">
-                  Hapus
-                </button>
-              </td>
-            </tr>
-        </tbody>
-      </table>
-    </div>
-  );
+                  <td className="px-4 py-2 border-b font-semibold text-gray-800">
+                    {item.title}
+                  </td>
+                  <td className="px-4 py-2 border-b">{item.company}</td>
+                  <td className="px-4 py-2 border-b">{item.location}</td>
+                  <td className="px-4 py-2 border-b">
+                    Rp{parseInt(item.salary.min).toLocaleString()} - Rp
+                    {parseInt(item.salary.max).toLocaleString()}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {item.requirements.education}
+                  </td>
+                  {/* <td className="px-4 py-2 border-b">
+                    {item.requirements.experience}
+                  </td> */}
+                  <td className="px-4 py-2 border-b">
+                    <ul className="list-disc list-inside space-y-1">
+                      {item.requirements.skills.map((skill, i) => (
+                        <li key={i}>{skill}</li>
+                      ))}
+                    </ul>
+                  </td>
+                  {/* <td className="px-4 py-2 border-b">
+                    <ul className="list-disc list-inside space-y-1">
+                      {item.benefits.map((benefit, i) => (
+                        <li key={i}>{benefit}</li>
+                      ))}
+                    </ul>
+                  </td> */}
+                  <td className="px-4 py-2 border-b">{item.description}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
 };
 
-export default Karyawan;
+export default JobApplication;

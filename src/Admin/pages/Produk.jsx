@@ -1,108 +1,46 @@
-import React, { useState } from "react";
+import artikelData from "../data/produk_list.json";
 
 const Produk = () => {
-  const [products, setProducts] = useState([
-    { id: 1, name: "Chicken chesee", price: 78000},
-    { id: 2, name: "chicken pom", price: 45000 },
-    { id: 3, name: "chicken tariyaki ", price: 30000 },
-  ]);
-
-  const [formData, setFormData] = useState({ id: "", name: "", price: "" });
-
-  // Handle Input
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // Tambah / Update Produk
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.id) {
-      setProducts(
-        products.map((product) =>
-          product.id === formData.id ? { ...formData, id: product.id } : product
-        )
-      );
-    } else {
-      setProducts([
-        ...products,
-        { ...formData, id: products.length ? products[products.length - 1].id + 1 : 1 },
-      ]);
-    }
-    setFormData({ id: "", name: "", price: "" });
-  };
-
-  // Edit Produk
-  const handleEdit = (product) => {
-    setFormData(product);
-  };
-
-  // Hapus Produk
-  const handleDelete = (id) => {
-    setProducts(products.filter((product) => product.id !== id));
-  };
-
   return (
-    <div className="container mt-4">
-      <h2>Manajemen Produk</h2>
-
-      {/* Form Produk */}
-      <form onSubmit={handleSubmit} className="mb-4">
-        <div className="mb-3">
-          <label className="form-label">Nama Produk</label>
-          <input
-            type="text"
-            className="form-control"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Harga</label>
-          <input
-            type="number"
-            className="form-control"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          {formData.id ? "Update" : "Tambah"}
-        </button>
-      </form>
-
-      {/* Tabel Produk */}
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nama Produk</th>
-            <th>Harga</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.id}</td>
-              <td>{product.name}</td>
-              <td>Rp {product.price.toLocaleString()}</td>
-              <td>
-                <button className="btn btn-warning me-2" onClick={() => handleEdit(product)}>
-                  Edit
-                </button>
-                <button className="btn btn-danger" onClick={() => handleDelete(product.id)}>
-                  Hapus
-                </button>
-              </td>
+    <div className="p-8">
+      <div className="overflow-x-auto">
+        <table className="min-w-full table-auto border-collapse border border-gray-300 bg-white text-sm text-left">
+          <thead className="bg-gray-100 text-gray-700 text-left">
+            <tr>
+              <th className="px-4 py-2 border border-gray-300">Image</th>
+              <th className="px-4 py-2 border border-gray-300">Name</th>
+              <th className="px-4 py-2 border border-gray-300">Description</th>
+              <th className="px-4 py-2 border border-gray-300">Price</th>
+              <th className="px-4 py-2 border border-gray-300">Stock</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {artikelData.map((item) => (
+              <tr key={item.id} className="hover:bg-gray-50 align-top">
+                <td className="px-4 py-2 border border-gray-300 min-w-[150px]">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-[150px] h-[150px] object-cover rounded shadow"
+                  />
+                </td>
+                <td className="px-4 py-2 border border-gray-300 font-semibold text-gray-800">
+                  {item.name}
+                </td>
+                <td className="px-4 py-2 border border-gray-300">
+                  {item.description}
+                </td>
+                <td className="px-4 py-2 border border-gray-300">
+                  {item.price}
+                </td>
+                <td className="px-4 py-2 border border-gray-300">
+                  {item.stock}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

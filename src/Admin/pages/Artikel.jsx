@@ -1,108 +1,40 @@
-import React, { useState } from "react";
+import artikelData from "../data/artikel_list.json";
 
 const Artikel = () => {
-  const [products, setProducts] = useState([
-    { id: 1, judul: "chicken chessee", detail: "Crispy chicken fillet yang juicy, dilapisi dengan keju leleh yang gurih dan creamy. Disajikan dengan saus spesial dan kentang goreng." },
-    { id: 2, judul: "chicken pom", detail: "Potongan ayam kecil berbentuk bola-bola yang renyah di luar, lembut di dalam. Cocok dicocol dengan saus BBQ atau mayo pedas." },
-    { id: 3, judul: "hicken tariyaki", detail: "Ayam panggang dengan saus teriyaki khas Jepang, manis gurih dengan sentuhan wijen. Dilengkapi dengan nasi hangat dan sayuran segar." },
-  ]);
-
-  const [formData, setFormData] = useState({ id: "", judul: "", detail: "" });
-
-  // Handle Input
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // Tambah / Update Artikel
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.id) {
-      setProducts(
-        products.map((product) =>
-          product.id === formData.id ? { ...formData, id: product.id } : product
-        )
-      );
-    } else {
-      setProducts([
-        ...products,
-        { ...formData, id: products.length ? products[products.length - 1].id + 1 : 1 },
-      ]);
-    }
-    setFormData({ id: "", judul: "", detail: "" });
-  };
-
-  // Edit Artikel
-  const handleEdit = (product) => {
-    setFormData(product);
-  };
-
-  // Hapus Artikel
-  const handleDelete = (id) => {
-    setProducts(products.filter((product) => product.id !== id));
-  };
-
   return (
-    <div className="container mt-4">
-      <h2>Manajemen Artikel</h2>
-
-      {/* Form Artikel */}
-      <form onSubmit={handleSubmit} className="mb-4">
-        <div className="mb-3">
-          <label className="form-label">Judul Artikel</label>
-          <input
-            type="text"
-            className="form-control"
-            name="judul"
-            value={formData.judul}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">detail</label>
-          <input
-            type="text"
-            className="form-control"
-            name="detail"
-            value={formData.detail}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          {formData.id ? "Update" : "Tambah"}
-        </button>
-      </form>
-
-      {/* Tabel Artikel */}
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Judul Artikel</th>
-            <th>detail</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.id}</td>
-              <td>{product.judul}</td>
-              <td>{product.detail}</td>
-              <td>
-                <button className="btn btn-warning me-2" onClick={() => handleEdit(product)}>
-                  Edit
-                </button>
-                <button className="btn btn-danger" onClick={() => handleDelete(product.id)}>
-                  Hapus
-                </button>
-              </td>
+    <div className="p-8">
+      <div className="overflow-x-auto">
+        <table className="min-w-full table-auto border-collapse border border-gray-300 bg-white text-sm text-left">
+          <thead className="bg-gray-100 text-gray-700 text-left">
+            <tr>
+              <th className="px-4 py-2 border border-gray-300">Image</th>
+              <th className="px-4 py-2 border border-gray-300">Title</th>
+              <th className="px-4 py-2 border border-gray-300">Content</th>
+              <th className="px-4 py-2 border border-gray-300">Date</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {artikelData.map((item) => (
+              <tr key={item.id} className="hover:bg-gray-50 align-top">
+                <td className="px-4 py-2 border border-gray-300 min-w-[150px]">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-[150px] h-[150px] object-cover rounded shadow"
+                  />
+                </td>
+                <td className="px-4 py-2 border border-gray-300 font-semibold text-gray-800">
+                  {item.title}
+                </td>
+                <td className="px-4 py-2 border border-gray-300">
+                  {item.content}
+                </td>
+                <td className="px-4 py-2 border border-gray-300">{item.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
