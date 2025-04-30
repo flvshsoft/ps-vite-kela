@@ -1,28 +1,45 @@
-import "./Admin/assets/tailwind.css";
-import Sidebar from "./Admin/layouts/Sidebar";
-import Header from "./Admin/layouts/Header";
-import Dashboard from "./Admin/pages/Dashboard";
+import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom"; // Import Routes and Route
-import Produk from "./Admin/pages/Produk";
-import Artikel from "./Admin/pages/Artikel";
-import Karyawan from "./Admin/pages/Karyawan";
+import "./Admin/assets/tailwind.css";
+const Dashboard = React.lazy(() => import("./Admin/pages/Dashboard"));
+const Produk = React.lazy(() => import("./Admin/pages/Produk"));
+const Artikel = React.lazy(() => import("./Admin/pages/Artikel"));
+const Karyawan = React.lazy(() => import("./Admin/pages/Karyawan"));
+const MainLayout = React.lazy(() => import("./Admin/layouts/MainLayout"));
+const AuthLayout = React.lazy(() => import("./Admin/layouts/AuthLayout"));
+const Login = React.lazy(() => import("./Admin/pages/auth/Login"));
+const Register = React.lazy(() => import("./Admin/pages/auth/Register"));
+const Forgot = React.lazy(() => import("./Admin/pages/auth/Forgot"));
+import Loading from "./Admin/components/Loading";
+import NotFound from "./Admin/pages/NotFound";
+import ErrorPage400 from "./Admin/pages/ErrorPage400";
+import ErrorPage401 from "./Admin/pages/ErrorPage401";
+import ErrorPage403 from "./Admin/pages/ErrorPage403";
+const UserList = React.lazy(() => import("./Admin/pages/UserList"));
 
 function App() {
   return (
-    <div id="app-container" className="bg-gray-100 min-h-screen flex">
-      <div id="layout-wrapper" className="flex flex-row flex-1">
-        <Sidebar />
-        <div id="main-content" className="flex-1 p-4">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/produk" element={<Produk />} />
-            <Route path="/artikel" element={<Artikel />} />
-            <Route path="/karyawan" element={<Karyawan />} />
-          </Routes>
-        </div>
-      </div>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/produk" element={<Produk />} />
+          <Route path="/artikel" element={<Artikel />} />
+          <Route path="/karyawan" element={<Karyawan />} />
+          <Route path="/UserList" element={<UserList />} />
+        </Route>
+        {/* Error Pages */}
+        <Route path="/ErrorPage400" element={<ErrorPage400 />} />
+        <Route path="/ErrorPage401" element={<ErrorPage401 />} />
+        <Route path="/ErrorPage403" element={<ErrorPage403 />} />
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot" element={<Forgot />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 

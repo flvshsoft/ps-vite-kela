@@ -26,4 +26,4 @@ install chart npm install apexcharts react-apexcharts / yarn add apexcharts reac
 
 import chart : import Chart from "react-apexcharts";
 
-
+npm install axios

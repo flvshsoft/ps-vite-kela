@@ -1,11 +1,11 @@
-import { BiText } from "react-icons/bi";
+import { BiText, BiUser } from "react-icons/bi";
 import { BiCartAdd } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
-import { BsListNested } from "react-icons/bs";
+import { FaUserAlt } from "react-icons/fa";
+import { BiLogIn } from "react-icons/bi";
 import { AiOutlineHome } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { BiHomeAlt } from "react-icons/bi";
-import ListMenu from "../components/ListMenu.jsx";
+import ListMenu from "./ListMenu.jsx";
 export default function Sidebar() {
   return (
     <div
@@ -59,23 +59,31 @@ export default function Sidebar() {
             label="Karyawan"
             to="karyawan"
           />
-
-          {/* List Menu
-            
-            <div id="sidebar-menu" className="mt-10">
-                <ul id="menu-list"className="space-y-3">
-                    <li>
-	                    <div id="menu-1" className="hover:text-hijau flex 
-                        cursor-pointer items-center rounded-xl p-4 font-medium text-gray-600 hover:bg-green-200 hover:font-extrabold"> <BiHomeAlt  className="mr-4 text-xl"/> Dashboard</div>
-	                  </li>
-                    <li>
-	                    <div id="menu-2" className="hover:text-hijau flex cursor-pointer items-center
-                         rounded-xl p-4 font-medium text-gray-600 hover:bg-green-200 hover:font-extrabold"> <BsList  className="mr-4 text-xl" /> Orders</div>
-	                  </li>
-	                  <li>
-	                    <div id="menu-3" className="hover:text-hijau flex cursor-pointer items-center rounded-xl p-4 font-medium
-                         text-gray-600 hover:bg-green-200 hover:font-extrabold"> <BsFillPersonFill  className="mr-4 text-xl" />Customers</div>
-	                  </li> */}
+          <ListMenu
+            id="menu-5"
+            to="/ErrorPage400"
+            icon={<FaUserAlt />}
+            label="ErrorPage400"
+          />
+          <ListMenu
+            id="menu-6"
+            to="/ErrorPage401"
+            icon={<FaUserAlt />}
+            label="ErrorPage401"
+          />
+          <ListMenu
+            id="menu-7"
+            to="/ErrorPage403"
+            icon={<FaUserAlt />}
+            label="ErrorPage403"
+          />
+          <ListMenu
+            id="menu-8"
+            to="/UserList"
+            icon={<BiUser />}
+            label="List User"
+          />
+          <ListMenu id="menu-9" to="/Login" icon={<BiLogIn />} label="Login" />
         </ul>
       </div>
 

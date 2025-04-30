@@ -1,7 +1,7 @@
 import { FaBell, FaSearch } from "react-icons/fa";
 import { FcAreaChart } from "react-icons/fc";
 import { SlSettings } from "react-icons/sl";
-import HeaderMenuItem from "../components/HeaderMenuItem";
+import HeaderMenuItem from "./HeaderMenuItem";
 
 // export default function Header() {
 //     return (
@@ -29,7 +29,6 @@ import HeaderMenuItem from "../components/HeaderMenuItem";
 //                 <div id="settings-icon"className="p-3 bg-red-100 rounded-2xl text-red-500 cursor-pointer">
 //                     <SlSettings />
 //                 </div>
-             
 
 //                 {/* Profile Section */}
 //                 <div id="profile-container"className="flex items-center space-x-4 border-l pl-4 border-gray-300">
@@ -39,7 +38,7 @@ import HeaderMenuItem from "../components/HeaderMenuItem";
 //                     <img
 //                         id="profile-avatar" className="w-10 h-10 rounded-full"
 //                         src="https://avatar.iran.liara.run/public/28"
-                        
+
 //                     />
 //                 </div>
 //             </div>
@@ -47,60 +46,60 @@ import HeaderMenuItem from "../components/HeaderMenuItem";
 //     );
 // }
 
-
-
-
 export default function Header() {
-    return (
-      <div id="header-container" className="flex justify-between items-center p-4">
-        {/* Search Bar */}
-        <div id="search-bar" className="relative w-full max-w-lg">
-          <input
-            id="search-input"
-            className="border border-gray-100 p-2 pr-10 bg-white w-full max-w-lg rounded-md outline-none"
-            type="text"
-            placeholder="Search Here..."
+  return (
+    <div
+      id="header-container"
+      className="flex justify-between items-center p-4"
+    >
+      {/* Search Bar */}
+      <div id="search-bar" className="relative w-full max-w-lg">
+        <input
+          id="search-input"
+          className="border border-gray-100 p-2 pr-10 bg-white w-full max-w-lg rounded-md outline-none"
+          type="text"
+          placeholder="Search Here..."
+        />
+        <FaSearch
+          id="search-icon"
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-300"
+        />
+      </div>
+
+      {/* Icon & Profile Section */}
+      <div id="icons-container" className="flex items-center space-x-4">
+        <HeaderMenuItem
+          id="notification-icon"
+          icon={<FaBell />}
+          color="bg-blue-100 text-blue-500"
+          badge={50}
+        />
+        <HeaderMenuItem
+          id="chart-icon"
+          icon={<FcAreaChart />}
+          color="bg-blue-100"
+        />
+        <HeaderMenuItem
+          id="settings-icon"
+          icon={<SlSettings />}
+          color="bg-red-100 text-red-500"
+        />
+
+        {/* Profile Section */}
+        <div
+          id="profile-container"
+          className="flex items-center space-x-4 border-l pl-4 border-gray-300"
+        >
+          <span id="profile-text">
+            Hello, <b>kela</b>
+          </span>
+          <img
+            id="profile-avatar"
+            className="w-10 h-10 rounded-full"
+            src="https://avatar.iran.liara.run/public/28"
           />
-          <FaSearch
-            id="search-icon"
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-300"
-          />
-        </div>
-  
-        {/* Icon & Profile Section */}
-        <div id="icons-container" className="flex items-center space-x-4">
-          <HeaderMenuItem
-            id="notification-icon"
-            icon={<FaBell />}
-            color="bg-blue-100 text-blue-500"
-            badge={50}
-          />
-          <HeaderMenuItem
-            id="chart-icon"
-            icon={<FcAreaChart />}
-            color="bg-blue-100"
-          />
-          <HeaderMenuItem
-            id="settings-icon"
-            icon={<SlSettings />}
-            color="bg-red-100 text-red-500"
-          />
-  
-          {/* Profile Section */}
-          <div
-            id="profile-container"
-            className="flex items-center space-x-4 border-l pl-4 border-gray-300"
-          >
-            <span id="profile-text">
-              Hello, <b>kela</b>
-            </span>
-            <img
-              id="profile-avatar"
-              className="w-10 h-10 rounded-full"
-              src="https://avatar.iran.liara.run/public/28"
-            />
-          </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
